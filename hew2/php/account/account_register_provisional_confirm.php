@@ -11,6 +11,7 @@ session_start();
 // DBに登録し、complete画面に遷移
 if (!empty($_POST['submit'])) {
     $users = $_SESSION['users'];
+	session_unset($_SESSION['users']);		//セッション削除
     try {
         // DB接続(PDO)
         $pdo = new PDO ('mysql:dbname='.DB.';host='.DB_HOST.';charset=utf8', DB_USER, DB_PASS);
@@ -63,7 +64,7 @@ if (!empty($_POST['submit'])) {
 					'-----------------------------------------------------------'."\r\n".
 					$toname.'様'."\r\n".
 		  			'本登録にお進みの場合は以下のURLをクリックし本登録にお進みください'."\r\n".
-		  			'http://localhost/hew2/php/account/account_register_provisional_success.php?id='.$hash_login_id;
+		  			'http://localhost/hew2/php/account/account_register_success.php?id='.$hash_login_id;
 
 		  //メール設定
 		  $mail->SMTPDebug = 2; //デバッグ用
@@ -89,14 +90,6 @@ if (!empty($_POST['submit'])) {
 		  echo '失敗: ', $mail->ErrorInfo;
 		}
 
-
-
-
-
-
-
-
-
     } catch (PDOException $e) {
         // エラー出力
         var_dump($e->getMessage());
@@ -118,8 +111,6 @@ else {
     header("location:account_register_provisional_form.php");
     exit;
 }
-
-
 
 
 
