@@ -64,10 +64,10 @@ if (!empty($_POST['submit'])) {
 					'-----------------------------------------------------------'."\r\n".
 					$toname.'様'."\r\n".
 		  			'本登録にお進みの場合は以下のURLをクリックし本登録にお進みください'."\r\n".
-		  			'http://localhost/hew2/php/account/account_register_success.php?id='.$hash_login_id;
+		  			'https://r4.quicca.com/~hew1902/php/account/account_register_success.php?id='.$hash_login_id;
 
 		  //メール設定
-		  $mail->SMTPDebug = 2; //デバッグ用
+		  $mail->SMTPDebug = 0; //デバッグ用
 		  $mail->isSMTP();
 		  $mail->SMTPAuth = true;
 		  $mail->Host = $host;
@@ -84,10 +84,9 @@ if (!empty($_POST['submit'])) {
 
 		  //メール送信
 		  $mail->send();
-		  echo '成功';
 
 		} catch (Exception $e) {
-		  echo '失敗: ', $mail->ErrorInfo;
+
 		}
 
     } catch (PDOException $e) {
@@ -99,6 +98,17 @@ if (!empty($_POST['submit'])) {
 
     // account_register_provisional_success.phpに遷移
     header("location:account_register_provisional_success.php");
+	//headerが使えない場合javascriptでページ遷移
+	//echo '
+	//<script type="text/javascript">
+
+	//setTimeout("redirect()", 0);
+
+	//function redirect() {
+	//	location.href="https://r4.quicca.com/~hew1902/php/account/account_register_provisional_success.php";
+	//}
+
+	//</script>';
     exit;
 }
 
