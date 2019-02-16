@@ -1,15 +1,62 @@
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title>TOP</title>
+ <!DOCTYPE html>
+ <html lang="ja" dir="ltr">
+   <head>
+     <meta charset="utf-8">
+     <title>投稿表示</title>
+   </head>
+   <body>
+     <h1>投稿表示</h1>
+     <div class='header'>
+       <p class='logo'>TOP</p>
+     </div>
+     <form action="contribution_view.php" method="post">
 
-	</head>
+     <div class='account'>
+       <img src='account_image'>
+       <p><?php $account_name ?></p>
+       <?php //↓↓↓ここから↓↓↓ ?>
+       <button type='submit' name='follow' class='account_btn'>フォロー</button>
+       <button type='submit' name='edit' class='account_btn'>編集</button>
+       <?php //↑↑↑ここまでをphpで処理する↑↑↑ ?>
+     </div>
+ <!-- ワードを表示 -->
+     <div class='contents'>
+       <p>カテゴリー：<?php echo $category //データベースからカテゴリを抽出する ?></p>
+       <a href='#?word=<?php echo $word1 ?>'><?php echo $word1 //データベースからワード１を抽出する ?></a>
+       <p>×</p>
+       <a href='#?word=<?php echo $word2 ?>'><?php echo $word2 //データベースからワード２を抽出する ?></a>
+       <p><?php $date ?></p>
+     </div>
+ <!-- 理由を表示 -->
+     <div class='reason'>
+       <dl class='reason_con'>
+         <dt>理由：</dt>
+         <dd><?php echo $reason //データベースから理由を抽出する ?></dd>
+       </dl>
+     </div>
+     </hr>
+ <!-- メモ表示 -->
+     <div class='memo'>
+       <dl class='memo_con'>
+         <dt>メモ：</dt>
+         <dd><?php echo $memo //データベースからメモを抽出 ?></dd>
+       </dl>
+     </div>
 
-<body>
-<div class="container">
-<h1>TOP</h1>
-<a href="php/login.php">投稿閲覧</a>
-</div>
-</body>
-</html>
+     <div class='reply'>
+       <input type='text' name='reply'>
+       <input type='submit' name='reply_btn' value='コメント'>
+     </div>
+
+     <div class='coments'>
+       <dl>
+         <dt>コメント</dt>
+       <?php foreach ($coment as list('image'=>$image,'name'=>$name,'coment'=>$coment) ): ?>
+         <dd><img src="#"> <?php $name ?> <?php $coment ?> </dd>
+       <?php endforeach; ?>
+     </dl>
+     </div>
+
+   </form>
+   </body>
+ </html>
