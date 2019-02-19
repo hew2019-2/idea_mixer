@@ -1,6 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+require_once '../../function/func.php';
 require_once '../../config.php';
 require_once '../../class/user.php';
 require '../../PHPMailer/src/Exception.php';
@@ -17,14 +18,10 @@ if (!empty($_POST['submit'])) {
         $pdo = new PDO ('mysql:dbname='.DB.';host='.DB_HOST.';charset=utf8', DB_USER, DB_PASS);
 
         // ハッシュ化
-		$hash_login_id = $users->get_login_id();
-		$hash_password = $users->get_password();
 		$stretch = rand(1000,10000);		//ストレッチ回数
 		$salt = uniqid();			//ソルト値
-		for($i=0;$i<$stretch;$i++){			//ハッシュ化
-			$hash_login_id = md5($salt.$hash_login_id);
-			$hash_password = md5($salt.$hash_password);
-		}
+		$hash_login_id = hash_value($salt,$stretch,$users->get_login_id());
+		$hash_password = hash_value($salt,$stretch,$users->get_login_id());
 		//日付取得
 		$updated_at = date('Y-m-d H:i:s');
 		$created_at = $updated_at;
@@ -43,13 +40,13 @@ if (!empty($_POST['submit'])) {
 		$mail = new PHPMailer(true);
 
 		try {
-		  //Gmail 認証情報
-		  $host = 'smtp.gmail.com';
-		  $username = 'HAL2018iw02@gmail.com'; // 送信元gmailアドレス
-		  $password = 'HAL2018iw02';  //gmailアカウントのパスワード
+		  //smtpメール 認証情報
+		  $host = 'qc20.quicca.com';
+		  $username = 'reply@hal2018iw02.qcweb.jp'; // 送信元quiccaメールアドレス
+		  $password = 'admin1234';  //quiccaメールアカウントのパスワード
 
 		  //差出人
-		  $from = 'HAL_HEW@gmail.com';	//
+		  $from = 'reply@hal2018iw02.qcweb.jp';	//
 		  $fromname = 'HAL';	//
 
 		  //宛先
@@ -73,8 +70,8 @@ if (!empty($_POST['submit'])) {
 		  $mail->Host = $host;
 		  $mail->Username = $username;
 		  $mail->Password = $password;
-		  $mail->SMTPSecure = 'tls';
-		  $mail->Port = 587;
+		  $mail->SMTPSecure = 'ssl';
+		  $mail->Port = 465;
 		  $mail->CharSet = "utf-8";
 		  $mail->Encoding = "base64";
 		  $mail->setFrom($from, $fromname);
