@@ -15,13 +15,12 @@
        <img src='account_image'>
        <p><?php $account_name ?></p>
        <?php //↓↓↓ここから↓↓↓ ?>
-       <button type='submit' name='follow' class='account_btn'>フォロー</button>
-       <button type='submit' name='edit' class='account_btn'>編集</button>
+       <?php echo $button ?>
        <?php //↑↑↑ここまでをphpで処理する↑↑↑ ?>
      </div>
  <!-- ワードを表示 -->
      <div class='contents'>
-       <p>カテゴリー：<?php echo $category //データベースからカテゴリを抽出する ?></p>
+       <p>カテゴリー：<?php echo $category_name //データベースからカテゴリを抽出する ?></p>
        <a href='#?word=<?php echo $word1 ?>'><?php echo $word1 //データベースからワード１を抽出する ?></a>
        <p>×</p>
        <a href='#?word=<?php echo $word2 ?>'><?php echo $word2 //データベースからワード２を抽出する ?></a>
@@ -51,8 +50,8 @@
      <div class='coments'>
        <dl>
          <dt>コメント</dt>
-       <?php foreach ($coment as list('image'=>$image,'name'=>$name,'coment'=>$coment) ): ?>
-         <dd><img src="#"> <?php $name ?> <?php $coment ?> </dd>
+       <?php foreach ($comments as list('comment'=>$comment,'name'=>$name) ): ?>
+         <dd> <?php echo $name ?> <img src="#"><?php echo $comment ?></dd>
        <?php endforeach; ?>
      </dl>
      </div>

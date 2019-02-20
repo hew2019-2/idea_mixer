@@ -9,7 +9,8 @@
 <div class="container">
 <h1>TOP</h1>
 <div class='box1'>
-	<p>公開：<?php echo $range  ?></p>
+	<p>カテゴリー <?php echo $category_set ?></p>
+	<p>公開：<?php echo $range_set  ?></p>
 	<p>テキスト一つ目</p>
 	<p><?php echo $text1 ?></p>
 	<p>×</p>
@@ -20,9 +21,9 @@
 <div class='box2'>
 	<dl class="">
 		<dt>理由</dt>
-			<dd> <?php echo $radio  ?> </dd>
+			<dd> <?php echo $radio_set  ?> </dd>
 		<dt>メモ公開：</dt>
-			<dd> <?php echo $memo_range ?> </dd>
+			<dd> <?php echo $memo_range_set ?> </dd>
 		<dt>メモ</dt>
 			<dd> <?php echo $memo  ?> </dd>
 	</dl>
@@ -31,7 +32,7 @@
 <div class='box3'>
 	<form class='' action="contribution_confirm.php" method='post'>
 		<a href='contribution_confirm.php?back=back'>戻る</a>
-		<a href='contribution_confirm.php'>投稿</a>
+		<input type='submit' name='next' value='投稿を完了する'>
 	</form>
 </div>
 </div>
