@@ -12,6 +12,15 @@ $category_err = '';
 $m_c_error = '';
 $rows['keyword'] = '';
 
+$sql = "SELECT name FROM categories";
+$stmt = $dbh->query($sql);
+$category_array = array();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {    // SELECT~LIMITクエリで取得したレコード全てをfetch
+    $category_array[] = $row['name'];   // fetchした結果をレコード単位で配列$dispに保存
+}
+$dbh = null;
+
+
 if (isset($_POST['next'])) {
 //
 //エラーフラグ
@@ -87,6 +96,7 @@ if ($_POST['range'] > $_POST['memo_range']) {
 //
   if ($error_flag == '') {
     header('Location:contribution_confirm.php');
+    exit();
   }
 
 }
