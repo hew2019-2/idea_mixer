@@ -1,27 +1,50 @@
 <?php
+require_once '../../config.php';
+require_once '../../function/dbacces.php';
+$dbh = database();
 session_start();
+$_SESSION['user_id'] = 2;
+$user_id = 2;
 $text_err = '';
 $range_err = '';
 $radio_error = '' ;
 $category_err = '';
+$m_c_error = '';
+$rows['keyword'] = '';
+
 if (isset($_POST['next'])) {
-  $error_flag = '';//エラーフラグ
-  if ($_POST['category'] == 'default') {//カテゴリのエラーチェック
-    $category_err = 'カテゴリーが未選択です。';
-    $error_flag = 'error';
+//
+//エラーフラグ
+//
+  $error_flag = '';
+//
+//カテゴリのエラーチェック
+//
+  if ($_POST['category'] == 0) {
+   $category_err = 'カテゴリーが未選択です。';
+   $error_flag = 'error';
   }
-  else{//セッションに保存
+  else{
     $_SESSION['category'] = $_POST['category'];
   }
-  if ($_POST['range']=='default') {//公開範囲エラーチェック
+//
+//公開範囲エラーチェック＆セッションに保存
+//
+  if ($_POST['range']==0) {
     $error_flag = 'error';
     $range_err = '公開範囲が未選択です。';
-
   }
   else{
     $_SESSION['range']=$_POST['range'];
   }
-  if($_POST['text1'] == '' || $_POST['text2'] == '') {//テキストのエラーチェック
+  //初期ページの初期化
+
+//ランダムボタンが押された時
+
+//
+//テキストのエラーチェック＆セッションに保存
+//
+  if($_POST['text1'] == '' || $_POST['text2'] == '') {
     $error_flag = 'error';
     $text_err = 'テキストが未記入です。';
   }
@@ -29,22 +52,39 @@ if (isset($_POST['next'])) {
     $_SESSION['text1'] = $_POST['text1'];
     $_SESSION['text2'] = $_POST['text2'];
   }
-  if (empty($_POST['radio'])) {//理由の部分のエラーチェック
+//
+//理由の部分のエラーチェック&セッションに保存
+//
+  if (empty($_POST['radio'])) {
     $error_flag = 'error';
     $radio_error = '理由を選択してください。';
   }
   else{
     $_SESSION['radio'] = $_POST['radio'];
+    $_SESSION['other'] = $_POST['other'];
   }
-
-  if ($_POST['memo_range'] != '') {//メモの公開範囲のをセッションに保存
+//
+//メモの公開範囲をセッションに保存
+//
+  if ($_POST['memo_range'] != '') {
     $_SESSION['memo_range'] = $_POST['memo_range'];
   }
-
-  if ($_POST['memo'] != '' ) {//メモをセッションに保存
+//
+//メモをセッションに保存
+//
+  if ($_POST['memo'] != '' ) {
     $_SESSION['memo'] = $_POST['memo'];
   }
-
+//
+//公開範囲とメモの範囲の設定がおかしかったらエラー
+//
+if ($_POST['range'] > $_POST['memo_range']) {
+   $m_c_error = 'カテゴリとメモのレンジの設定が正しくありません';
+   $error_flag = 'error';
+}
+//
+//エラーがなかった場合に次のページへ移動する
+//
   if ($error_flag == '') {
     header('Location:contribution_confirm.php');
   }
