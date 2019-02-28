@@ -8,8 +8,13 @@
 
 <body>
 <div class="container">
-<h1>TOP</h1>
-<a href="php/login.php">ログイン</a>
+<table border="1">
+	<tr><th>グループ名</th></tr>
+	<tr><td><?php echo $group_name; ?></td></tr>
+</table>
+<form action="group_create_confirm.php" method="get">
+	<input type="submit" value="登録" name="state">
+</form>
 </div>
 </body>
 </html>

@@ -8,8 +8,8 @@
 
 <body>
 <div class="container">
-<h1>TOP</h1>
-<a href="php/login.php">ログイン</a>
+<h1>登録完了</h1>
+
 </div>
 </body>
 </html>

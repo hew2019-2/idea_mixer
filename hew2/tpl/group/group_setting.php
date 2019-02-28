@@ -9,6 +9,7 @@
 <body>
 <div class="container">
 <h1>TOP</h1>
+<label>グループ名:</label>
 <a href="php/login.php">ログイン</a>
 </div>
 </body>
