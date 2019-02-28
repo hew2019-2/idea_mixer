@@ -1,15 +1,31 @@
-<!DOCTYPE html>
-<html lang="ja">
-	<head>
-		<meta charset="UTF-8">
-		<title>TOP</title>
+<?php
+require_once '../../function/dbaccess.php';
+require_once '../../config.php';
+session_start();
+$err_msg = '';
 
-	</head>
+if(isset($_GET['group_name'])){
 
-<body>
-<div class="container">
-<h1>TOP</h1>
-<a href="php/login.php">ログイン</a>
-</div>
-</body>
-</html>
+	if($_GET['group_name'] == ''){
+		$err_msg = '未入力です';
+	}
+	else{
+		$_SESSION['group_name'] = $_GET['group_name'];
+		header('location:group_create_confirm.php');
+		exit;
+	}
+
+
+
+
+
+
+}
+
+
+
+
+
+
+require_once '../../tpl/group/group_create.php';
+ ?>
