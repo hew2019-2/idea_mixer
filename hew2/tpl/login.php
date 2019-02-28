@@ -9,7 +9,7 @@
 <body>
 <div class="container">
 <h1>TOP</h1>
-<a href="php/login.php">ログイン</a>
+<a href="login.php">ログイン</a>
 </div>
 </body>
 </html>
