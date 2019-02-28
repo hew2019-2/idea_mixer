@@ -9,9 +9,9 @@ function h($value) {
 //戻り値:ハッシュ化後の文字列
 function hash_value($salt,$stretch,$str){
     for($i=0;$i<$stretch;$i++){			//ハッシュ化
-	$hash = md5($salt.$str);
+        $str = md5($salt.$str);
     }
-    return $hash;
+    return $str;
 }
 
 // 引数は幅、高さ、それぞれの閾値、縮小したい辺(幅ならture, 高さならfalse)
