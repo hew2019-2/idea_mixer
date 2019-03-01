@@ -1,105 +1,139 @@
-<?php
-require_once '../../config.php';
-require_once '../../function/dbacces.php';
-$dbh = database();
-session_start();
-$_SESSION['user_id'] = 2;
-$user_id = 2;
-$text_err = '';
-$range_err = '';
-$radio_error = '' ;
-$category_err = '';
-$m_c_error = '';
-$rows['keyword'] = '';
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../../css/bootstrap_con.css">
+	<link rel="stylesheet" href="../../css/con_form.css">
+	<title>投稿確認</title>
+	<script type="text/javascript" src="../../js/jquery-2.0.2.min.js"></script>
+	<style>
+		.display{display: hidden;}
+	</style>
+</head>
+<script type="text/javascript">
+</script>
+<body>
+<div class="container">
+<h1 class="top">投稿</h1>
+<hr>
+<form action="contribution_form.php" method="post">
+	<!--
+		投句のカテゴリー選択
+	-->
+	<div class="err_box">
+		<ul>
+			<li class='err'><?php echo $m_c_error ?></li>
+			<li class='err'><?php echo $category_err//error表示 ?></li>
+			<li class='err'><?php echo $range_err ?></li>
+			<li class='err'><?php echo $text_err ?></li>
+			<li class='err'><?php echo $radio_error ?></li>
+		</ul>
+	</div>
+	<div class="select">
+	<h2>カテゴリ・公開範囲の選択</h2>
+	<hr>
+	<div class="category">
+			<select class='category_sel' name="category">
+				<option value=0>カテゴリを選択しください</option>
+				<?php
+					$i = 1;
+					foreach ($category_array as $value) {
+						echo '<option value="'.$i.'">'.$value.'</option>';
+						$i++;
+					}
+				?>
+			</select>
+		</div>
+<!--
+	公開範囲を選択
+-->
+		<div class='box1'>
+			<select name='range' class="range_sel">
+				<option value=0>公開範囲</option>
+				<option value=1>全体に公開</option>
+				<!--デバック用php作成出来たら消して下さい-->
+				<option value=2>チーム内に公開</option>
+				<!-- ↑↑↑ここ↑↑↑ -->
+				<?php foreach ($team as $team): ?>
+					<option value='<?php echo $team?>'><?php echo $team ?></option><!--$team_numの初期値０をphp側で設定して下さい-->
+				<?php endforeach; ?>
+				<option value=3>自分だけに公開</option>
+			</select>
+		</div>
+		<div class="dummy"></div>
+	</div>
+<!--
+	アイデアの元とするワードの入力
+ -->
+	<div class='box2'>
+		<h2>アイデアとして出す単語を記入</h2>
+		<hr>
+		<div class="input">
+			<input type='text' name='text1' class=text1>
+			<span class="batu">×</span>
+			<input type='text' name='text2' id='word' class='text2'>
+			<button type='button' name='random' id='random_word' onclick='click_event()'> <img src="../../image/random.png" class='random_img'> </button>
+		</div>
+	</div>
 
-$sql = "SELECT name FROM categories";
-$stmt = $dbh->query($sql);
-$category_array = array();
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {    // SELECT~LIMITクエリで取得したレコード全てをfetch
-    $category_array[] = $row['name'];   // fetchした結果をレコード単位で配列$dispに保存
-}
-$dbh = null;
+	<div class='box3'>
+		<h2 class="inline">理由</h2>
+		<span>※必ず一つの項目を選択、又は記入して下さい</span>
+		<div class="dummy"></div>
+		<hr>
+		<div class="radio">
+			<p class="radio_sel"><input type='radio' name='radio' value=1 id='hidden'>内容が面白そうだったから</p>
+			<p class="radio_sel"><input type='radio' name='radio' value=2 id='hidden'>内容が斬新だったから</p>
+			<p class="radio_sel"><input type='radio' name='radio' value=3 id='hidden'>なんか”ぴん”ときたから</p>
+			<p class="radio_sel"><input type='radio' name='radio' value=4 id='hidden'>新しいが作れそうだから</p>
+			<p class="radio_sel"><input type='radio' name='radio' value=5 id='other'>その他</p>
+			<textarea name='other' rows="3" cols="30" id="show"></textarea>
+			</p>
+		</div>
+	</div>
 
+	<div class='box4'>
+		<h2 class='inline'>メモ</h2><span>※任意でご記入ください</span>
+		<div class="dummy"></div>
+		<hr>
+		<div class="memo">
+			<select name='memo_range'>
+				<option value=0>公開範囲</option>
+				<option value='1'>全体に公開</option>
+				<option value='2'>ティーム内に公開</option><!--デバック用php作成出来たら消して下さい-->
+				<?php foreach ($team as $team): ?>
+					<option value='2'><?php echo $team ?></option><!--$team_numの初期値０をphp側で設定して下さい-->
+				<?php endforeach; ?>
+				<option value='3'>自分だけに公開</option>
+			</select>
+			<textarea name='memo' rows='4' cols='40'></textarea>
+	</div>
+	</div>
+	<div class="submit">
+		<input type='submit' name='next' value='投稿確認画面へ' class="sub_btn">
+	</div>
 
-if (isset($_POST['next'])) {
-//
-//エラーフラグ
-//
-  $error_flag = '';
-//
-//カテゴリのエラーチェック
-//
-  if ($_POST['category'] == 0) {
-   $category_err = 'カテゴリーが未選択です。';
-   $error_flag = 'error';
-  }
-  else{
-    $_SESSION['category'] = $_POST['category'];
-  }
-//
-//公開範囲エラーチェック＆セッションに保存
-//
-  if ($_POST['range']==0) {
-    $error_flag = 'error';
-    $range_err = '公開範囲が未選択です。';
-  }
-  else{
-    $_SESSION['range']=$_POST['range'];
-  }
-  //初期ページの初期化
+</form>
+</div>
+<script type="text/javascript">
+	//MAXのカラム数を取得
+	function click_event(){
+		$.ajax({
+	        url: "../../php/contribution/dbaccess.php",
+	        type: "POST",
+	        success: function(response) {
+	            // console.log("ajax通信に成功しました");
+				document.getElementById("word").value = response;
+	        }
+	    });
+	}
+	$(".radio #hidden").click(function(){
+		$('#show').hide(250);
+	});
 
-//ランダムボタンが押された時
-
-//
-//テキストのエラーチェック＆セッションに保存
-//
-  if($_POST['text1'] == '' || $_POST['text2'] == '') {
-    $error_flag = 'error';
-    $text_err = 'テキストが未記入です。';
-  }
-  else{
-    $_SESSION['text1'] = $_POST['text1'];
-    $_SESSION['text2'] = $_POST['text2'];
-  }
-//
-//理由の部分のエラーチェック&セッションに保存
-//
-  if (empty($_POST['radio'])) {
-    $error_flag = 'error';
-    $radio_error = '理由を選択してください。';
-  }
-  else{
-    $_SESSION['radio'] = $_POST['radio'];
-    $_SESSION['other'] = $_POST['other'];
-  }
-//
-//メモの公開範囲をセッションに保存
-//
-  if ($_POST['memo_range'] != '') {
-    $_SESSION['memo_range'] = $_POST['memo_range'];
-  }
-//
-//メモをセッションに保存
-//
-  if ($_POST['memo'] != '' ) {
-    $_SESSION['memo'] = $_POST['memo'];
-  }
-//
-//公開範囲とメモの範囲の設定がおかしかったらエラー
-//
-if ($_POST['range'] > $_POST['memo_range']) {
-   $m_c_error = 'カテゴリとメモのレンジの設定が正しくありません';
-   $error_flag = 'error';
-}
-//
-//エラーがなかった場合に次のページへ移動する
-//
-  if ($error_flag == '') {
-    header('Location:contribution_confirm.php');
-    exit();
-  }
-
-}
-
-require_once '../../tpl/contribution/contribution_form.php';
- ?>
+	$(".radio #other").click(function(){
+		$('#show').slideToggle(250);
+	});
+</script>
+</body>
+</html>
