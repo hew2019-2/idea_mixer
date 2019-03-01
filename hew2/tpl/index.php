@@ -37,17 +37,19 @@
       <!-- Page Features -->
       <div class="row text-center">
 
-        <?php foreach($ideas as list('id'=>$id,'user_id'=>$user_id,'word1'=>$word1,'word2'=>$word2)){ ?>
+
+<!-- アイデアGWE　USERがSWETTION-->
+        <?php foreach($ideas as $val){ ?>
                 <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 mb-1">
                   <div class="card">
-                    <div class="card-body">
-                      <p class=""><?php echo $word1; ?></p>
-                      <p class="">✕</p>
-                      <p class=""><?php echo $word2; ?></p>
-                    </div>
-                    <div class="card-footer">
-                      <a href="./contribution/contribution_view.php?idea_id='.<?php echo $id; ?>'". class="btn">Join!</a>
-                    </div>
+                      <a href="./contribution/contribution_view.php?idea_id=<?php echo $val['idea_id']; ?>". class="btn">
+                        <p>
+                          <?php echo $val['keyword1'] ?><br>
+                          ✕<br>
+                          <?php echo $val['keyword2'] ?>
+                        </p>
+                      </a>
+                    
                   </div>
                 </div>
         <?php } ?>
