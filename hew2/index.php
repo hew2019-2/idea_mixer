@@ -1,7 +1,6 @@
 <?php
-require_once 'tpl/index.php';
-
-
+header("location: php/index.php");
+exit();
 
 
 
