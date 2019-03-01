@@ -4,60 +4,90 @@
    color:rgb(56, 56, 56);
 }
 body{
-   /* background-color: rgba(0, 0, 0, 0.8); */
+   background-color: rgba(0, 0, 0, 0.6);
 }
-.container{
+#page-name-view .container_{
    width: 800px;
    height: auto;
    margin: 30px auto;
    border: 1px solid black;
-   border-radius: 3%;
-   background-color: rgb(207, 207, 207);
+   border-radius: 20px;
+   background-color: white;
+   position: absolute;
+   top: 10px;
+   right: 25%;
+   left: 25%;
 }
-.account{
+#page-name-view .account_{
    width:100px;
    height:20px;
    float:right;
 }
-.account_btn{
+#page-name-view .account_btn_{
    width:60px;
    height: 25px;
 }
-.dummy{
+#page-name-view .dummy{
    clear:both;
 }
-.idea{
-
-}
-.contents{
+#page-name-view .contents_{
    width:400px;
    height:auto;
    margin:0 auto;
    text-align: center;
+   background-color: white;
+   border-radius: 6px;
 }
-.word{
+#page-name-view .word_{
    font-size: 50px;
    text-decoration: none;
 }
-.batu{
+#page-name-view .batu_{
    font-size: 40px;
 }
-.idea,.category,.reason,.memo,.reply,.coments{
+#page-name-view .idea_,.category_,.reason_,.memo_,.reply_,.coments_{
    width:400px;
    height:auto;
    margin:20px auto;
 }
-dt{
+#page-name-view dt{
    font-size: 20px;
 }
-.come_con{
+#page-name-view .come_con_{
    margin-left: 20%;
    margin-bottom: 10px;
 }
-.con{
+#page-name-view .con_{
    margin-left: 40%;
    font-size: 20px;
 }
-.coments{
+#page-name-view .coments_{
    color:rgb(194, 194, 194);
+}
+#page-name-view .reply_{
+   width:400px;
+   height:20px;
+   border-radius: 5px;
+   font-size: 15px;
+   resize: none;
+   margin: 0px;
+   padding-left: 5px;
+}
+#page-name-view .reply_:focus{
+   width:400px;
+   height:60px;
+   transition: 0.3s;
+}
+#page-name-view .reply_ {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	transition: 0.3s;
+	letter-spacing: 1px;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+}
+#page-name-view .reply_:focus {
+	border: 1px solid #da3c41;
+	outline: none;
+	box-shadow: 0 0 5px 1px rgba(218,60,65, .5);
 }
