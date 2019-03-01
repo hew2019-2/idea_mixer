@@ -3,58 +3,75 @@
    <head>
      <meta charset="utf-8">
      <title>投稿表示</title>
+     <link rel="stylesheet" href="../../css/con_view.css">
+     <link rel="stylesheet" href="../css/con_view.css">
    </head>
-   <body>
-     <h1>投稿表示</h1>
+   <body id="page-name-view">
+      <div class="container_">
      <div class='header'>
-       <p class='logo'>TOP</p>
+
      </div>
      <form action="contribution_view.php" method="post">
 
-     <div class='account'>
-       <img src='account_image'>
-       <p><?php $account_name ?></p>
-       <?php //↓↓↓ここから↓↓↓ ?>
+     <div class='account_'>
+       <!-- <img src='account_image'> -->
+       <p><?php $name ?></p>
+       <a href="../../index.php">TOPへ</a>
        <?php echo $button ?>
-       <?php //↑↑↑ここまでをphpで処理する↑↑↑ ?>
      </div>
  <!-- ワードを表示 -->
-     <div class='contents'>
-       <p>カテゴリー：<?php echo $category_name //データベースからカテゴリを抽出する ?></p>
-       <a href='#?word=<?php echo $word1 ?>'><?php echo $word1 //データベースからワード１を抽出する ?></a>
-       <p>×</p>
-       <a href='#?word=<?php echo $word2 ?>'><?php echo $word2 //データベースからワード２を抽出する ?></a>
+ <div class="dummy"></div>
+ <div class="idea_">
+    <h2>アイデア</h2>
+    <hr>
+ </div>
+     <div class='contents_'>
+       <a href='#?word=<?php echo $word1 ?>' class="word_"><?php echo $word1 //データベースからワード１を抽出する ?></a>
+       <div class="dummy"></div>
+       <span class="batu_">×</span>
+       <div class="dummy"></div>
+       <a href='#?word=<?php echo $word2 ?>' class="word_"><?php echo $word2 //データベースからワード２を抽出する ?></a>
        <p><?php $date ?></p>
      </div>
+     <div class="category_">
+        <dl class="category_con_">
+           <dt>カテゴリー</dt>
+           <hr>
+            <dd class="con_"><?php echo $category_name //データベースからカテゴリを抽出する ?></dd>
+        </dl>
+     </div>
  <!-- 理由を表示 -->
-     <div class='reason'>
-       <dl class='reason_con'>
-         <dt>理由：</dt>
-         <dd><?php echo $reason //データベースから理由を抽出する ?></dd>
+     <div class='reason_'>
+       <dl class='reason_con_'>
+         <dt>理由</dt>
+         <hr>
+         <dd class="con_"><?php echo $reason //データベースから理由を抽出する ?></dd>
        </dl>
      </div>
      </hr>
  <!-- メモ表示 -->
-     <div class='memo'>
-       <dl class='memo_con'>
-         <dt>メモ：</dt>
-         <dd><?php echo $memo //データベースからメモを抽出 ?></dd>
+     <div class='memo_'>
+       <dl class='memo_con_'>
+         <dt>メモ</dt>
+         <hr>
+         <dd class="con_"><?php echo $memo //データベースからメモを抽出 ?></dd>
        </dl>
      </div>
 
-     <div class='reply'>
-       <input type='text' name='reply'>
-       <input type='submit' name='reply_btn' value='コメント'>
-     </div>
-
-     <div class='coments'>
+     <div class='coments_'>
+           <textarea name="reply" class="reply_" placeholder="コメントを記入"></textarea>
+           <input type='submit' name='reply_btn_' value='コメント' class="reply_btn_">
        <dl>
          <dt>コメント</dt>
+         <hr>
        <?php foreach ($comments as list('comment'=>$comment,'name'=>$name) ): ?>
-         <dd> <?php echo $name ?> <img src="#"><?php echo $comment ?></dd>
+         <dd class="come_con_"> <?php echo $name ?> <img src="#"></dd>
+         <dd class=con_><?php echo h($comment) ?></dd>
+         <hr>
        <?php endforeach; ?>
      </dl>
      </div>
+  </div>
 
    </form>
    </body>
