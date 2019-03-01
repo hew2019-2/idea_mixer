@@ -1,0 +1,63 @@
+*{
+   margin: 0px;
+   padding:0px;
+   color:rgb(56, 56, 56);
+}
+body{
+   /* background-color: rgba(0, 0, 0, 0.8); */
+}
+.container{
+   width: 800px;
+   height: auto;
+   margin: 30px auto;
+   border: 1px solid black;
+   border-radius: 3%;
+   background-color: rgb(207, 207, 207);
+}
+.account{
+   width:100px;
+   height:20px;
+   float:right;
+}
+.account_btn{
+   width:60px;
+   height: 25px;
+}
+.dummy{
+   clear:both;
+}
+.idea{
+
+}
+.contents{
+   width:400px;
+   height:auto;
+   margin:0 auto;
+   text-align: center;
+}
+.word{
+   font-size: 50px;
+   text-decoration: none;
+}
+.batu{
+   font-size: 40px;
+}
+.idea,.category,.reason,.memo,.reply,.coments{
+   width:400px;
+   height:auto;
+   margin:20px auto;
+}
+dt{
+   font-size: 20px;
+}
+.come_con{
+   margin-left: 20%;
+   margin-bottom: 10px;
+}
+.con{
+   margin-left: 40%;
+   font-size: 20px;
+}
+.coments{
+   color:rgb(194, 194, 194);
+}

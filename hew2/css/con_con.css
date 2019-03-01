@@ -1,0 +1,47 @@
+*{
+   margin: 0px;
+   padding: 0px;
+   color:rgb(99, 99, 99);
+}
+.container{
+   width:800px;
+   height:auto;
+   margin: 40px auto;
+}
+.category{
+   font-size: 20px;
+}
+.box1,.box2,.box3{
+   width:400px;
+   margin: 0 auto;
+}
+.top{
+   font-size: 30px;
+}
+.batu{
+   font-size: 30px;
+   text-align: center;
+}
+dt{
+   margin-top: 20px;
+}
+.contents{
+   margin-left: 80px;
+   font-size: 15px;
+}
+.text{
+   font-size: 30px;
+   text-align: center;
+}
+.text_box{
+   width:400px;
+   margin: 0 auto;
+   text-align: center;
+}
+.btn{
+   margin-top: 20px;
+   text-align: center;
+}
+.con_btn{
+   margin-left: 40px
+}
