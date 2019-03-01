@@ -1,7 +1,4 @@
 <?php
-/*	フォームの確認はjsで
-*/
-
 require_once '../../config.php';
 require_once '../../function/func.php';
 session_start();
