@@ -10,7 +10,6 @@
   </head>
 
   <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -33,30 +32,23 @@
 
     <!-- Page Content -->
     <div class="container">
-
       <!-- Page Features -->
       <div class="row text-center">
-
-
-<!-- アイデアGWE　USERがSWETTION-->
         <?php foreach($ideas as $val){ ?>
                 <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3 mb-1">
                   <div class="card">
-                      <a href="./contribution/contribution_view.php?idea_id=<?php echo $val['idea_id']; ?>". class="btn">
-                        <p>
-                          <?php echo $val['keyword1'] ?><br>
-                          ✕<br>
-                          <?php echo $val['keyword2'] ?>
-                        </p>
-                      </a>
-                    
+                    <a href="./contribution/contribution_view.php?idea_id=<?php echo $val['id']; ?>" class="btn">
+                      <p>
+                        <?php echo $val['keyword_id_1'] ?><br>
+                        ✕<br>
+                        <?php echo $val['keyword_id_2'] ?>
+                      </p>
+                    </a>
                   </div>
                 </div>
         <?php } ?>
-
       </div>
       <!-- /.row -->
-
     </div>
     <!-- /.container -->
 
