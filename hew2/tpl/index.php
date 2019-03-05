@@ -56,16 +56,16 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
       <div class="container">
         <div class="col-3">
-          <a class="nav-link" href="./index.php">ホーム</a>
+          <a id="home" class="nav-link" href="./index.php">ホーム</a>
         </div>
         <div class="col-3">
-          <a class="nav-link" href="#">検索</a>
+          <a id="search" class="nav-link" href="#">検索</a>
         </div>
         <div class="col-3">
-          <a class="nav-link" href="#">マイページ</a>
+          <a id="mypage" class="nav-link" href="#">マイページ</a>
         </div>
         <div class="col-3">
-          <a class="nav-link" href="#">グループ</a>
+          <a id="group" class="nav-link" href="#">グループ</a>
         </div>
       </div>
     </nav>
