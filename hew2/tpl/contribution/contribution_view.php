@@ -17,14 +17,14 @@
        <!-- <img src='account_image'> -->
        <p><?php $name ?></p>
        <a href="../../index.php">TOPへ</a>
-       <?php echo $button ?>
      </div>
  <!-- ワードを表示 -->
- <div class="dummy"></div>
- <div class="idea_">
-    <h2>アイデア</h2>
-    <hr>
- </div>
+    <div class="dummy"></div>
+    <div class="idea_">
+       <h2 class="inline">アイデア</h2>
+       <button type="button" name="button" class='account_btn' onclick="click_event">いいね！</button>
+       <hr>
+    </div>
      <div class='contents_'>
        <a href='#?word=<?php echo $word1 ?>' class="word_"><?php echo $word1 //データベースからワード１を抽出する ?></a>
        <div class="dummy"></div>
@@ -33,36 +33,42 @@
        <a href='#?word=<?php echo $word2 ?>' class="word_"><?php echo $word2 //データベースからワード２を抽出する ?></a>
        <p><?php $date ?></p>
      </div>
-     <div class="category_">
-        <dl class="category_con_">
-           <dt>カテゴリー</dt>
-           <hr>
-            <dd class="con_"><?php echo $category_name //データベースからカテゴリを抽出する ?></dd>
-        </dl>
-     </div>
- <!-- 理由を表示 -->
-     <div class='reason_'>
-       <dl class='reason_con_'>
-         <dt>理由</dt>
-         <hr>
-         <dd class="con_"><?php echo $reason //データベースから理由を抽出する ?></dd>
-       </dl>
-     </div>
-     </hr>
- <!-- メモ表示 -->
-     <div class='memo_'>
-       <dl class='memo_con_'>
+     <div class="box3">
+
+        <div class="category_">
+           <dl class="category_con_">
+              <dt>カテゴリー</dt>
+              <hr>
+               <dd class="con_"><?php echo $category_name //データベースからカテゴリを抽出する ?></dd>
+           </dl>
+        </div>
+    </hr>
+    <!-- メモ表示 -->
+
+    <div class='memo_'>
+      <dl class='memo_con_'>
          <dt>メモ</dt>
          <hr>
          <dd class="con_"><?php echo $memo //データベースからメモを抽出 ?></dd>
-       </dl>
-     </div>
+      </dl>
+   </div>
+</div>
+   <div class='reason_'>
+     <dl class='reason_con_'>
+        <dt>理由</dt>
+        <hr>
+        <dd class="con_"><?php echo $reason //データベースから理由を抽出する ?></dd>
+     </dl>
+   </div>
+
+ <!-- 理由を表示 -->
 
      <div class='coments_'>
            <textarea name="reply" class="reply_" placeholder="コメントを記入"></textarea>
            <input type='submit' name='reply_btn_' value='コメント' class="reply_btn_">
        <dl>
          <dt>コメント</dt>
+         <?php echo $reply_err; ?>
          <hr>
        <?php foreach ($comments as list('comment'=>$comment,'name'=>$name) ): ?>
          <dd class="come_con_"> <?php echo $name ?> <img src="#"></dd>
@@ -75,4 +81,5 @@
 
    </form>
    </body>
+
  </html>
