@@ -45,13 +45,32 @@ body{
 #page-name-view .batu_{
    font-size: 40px;
 }
-#page-name-view .idea_,.category_,.reason_,.memo_,.reply_,.coments_{
+#page-name-view .idea_,.reason_,.reply_,.coments_{
    width:400px;
    height:auto;
    margin:20px auto;
 }
+.category_,.memo_{
+   margin-right:5px;
+   width:195px;
+   height:auto;
+}
+.box3{
+   margin: 0 auto;
+   width:400px;
+   display: flex;
+}
 #page-name-view dt{
    font-size: 20px;
+}
+.inline{
+   display: inline;
+}
+.account_btn{
+   float:right;
+   margin-top:10px;
+   width:100px;
+   height:30px;
 }
 #page-name-view .come_con_{
    margin-left: 20%;
@@ -79,7 +98,6 @@ body{
    transition: 0.3s;
 }
 #page-name-view .reply_ {
-	font: 15px/24px sans-serif;
 	box-sizing: border-box;
 	transition: 0.3s;
 	letter-spacing: 1px;
