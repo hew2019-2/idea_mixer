@@ -44,6 +44,7 @@
                         <?php echo $val['keyword_id_2'] ?>
                       </p>
                     </a>
+                    <button data-condition=false class="favoButton" data-favoNum=<?php echo $val['id']; ?>><img src="../images/star.png" style="max-width:20px;"></button>
                   </div>
                 </div>
         <?php } ?>
@@ -73,6 +74,53 @@
     <!-- Bootstrap core JavaScript -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(".favoButton").click(function() {
+        //押されたボタンの特定
+        var num = $(this).data("favonum");
+        var button = this;
+        //お気に入りボタンのdata-conditionで制御
+        if($(this).data('condition') == false){
 
+          //お気に入り登録
+          $.ajax({
+            url: './fav/add_fav.php',
+            type: 'POST',
+            dataType: 'text',
+            data: {favonum: num},
+          })
+          .always(function(data, textStatus, jqXHR) {
+            //登録成功
+              //お気に入りボタンの色を黄色に
+              $(button).css('backgroundColor', '#FF0');
+              //お気に入りボタン状態の更新
+              $(button).data('condition',true);
+          console.log("success");
+          });
+        }
+
+        else if($(this).data('condition') == true){
+
+          //お気に入り登録解除
+          $.ajax({
+            url: './fav/delete_fav.php',
+            type: 'POST',
+            dataType: 'text',
+            data: {favonum: num},
+          })
+          .always(function(data, textStatus, jqXHR) {
+            //登録解除成功
+              //背景色を解除
+              $(button).css('backgroundColor', '');
+              //お気に入りボタン状態の更新
+              $(button).data('condition',false);
+          })
+          .fail(function(data) {
+            console.log("error");
+
+          });
+        }
+      });
+    </script>
   </body>
 </html>
