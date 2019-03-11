@@ -2,24 +2,25 @@
    margin: 0;
    padding: 0;
    color:rgb(99, 99, 99);
+   font-size: 105%;
 }
 .err{
    list-style: none;
    color:red
 }
 .container{
-   width:800px;
+   width:90%;
    height:auto;
-   margin: 40px auto;
+   margin: 5% auto ;
 }
 .top{
-   font-size: 30px;
+   font-size: 300%;
 }
 h2{
-   font-size: 25px;
+   font-size: 200%;
 }
 h3{
-   font-size: 15px;
+   font-size: 150%;
 }
 label{
    display:block;
@@ -28,77 +29,85 @@ label{
    float: right;
    overflow: auto;
 }
+.select{
+   width:100%;
+   margin: 5% auto;
+}
 .category,.box1{
+   width:45%;
    float: left;
-   margin-top: 15px;
-   margin-left: 40px;
+   margin-top: 3%;
+   margin-left: 4%;
    overflow: hidden;
 }
 .category_sel,.range_sel{
-   width:150px;
-   height:30px;
+   width:100%;
 }
 .dummy{
    clear: both;
 }
 .box2{
-   width:400px;
-   margin: 30px auto;
-}
-.select{
-   width:400px;
-   margin: 30px auto;
+   width:100%;
+   margin: 10% auto;
 }
 .text1,.text2{
-   height: 30px;
-   width:400px;
+   height: 20%;
+   width:100%;
    font-size: 20px;
    text-align: center;
    display: block;
+   border: 1px solid rgb(155, 158, 158);
 }
 .batu{
-   font-size: 30px;
-   margin-left: 195px;
+   font-size: 100%;
+   margin-left: 50%;
 }
 .input{
    margin-left:40px;
    margin-top: 20px;
 }
 #random_word{
-   margin-top: 10px;
-   margin-left: 185px;
+   width:20%;
+   height:auto;
+   margin-top: 5%;
+   margin-left: 40%;
 }
 .random_img{
-   width:30px;
+   width:50%;
    height:auto;
 }
 .inline{
    display: inline;
 }
 .box4,.box3{
-   width:400px;
-   margin: 40px auto;
+   width:100%;
+   margin: 10% auto;
 }
 .radio{
    margin-top: 10px;
    margin-left: 10px;
 }
 .radio_sel{
-   margin: 5px;
-   margin-left: 40px;
+   margin: 2%;
+   margin-left: 5%;
 }
 #show{
    display: none;
-   margin-left: 40px;
+   margin-left: 5%;
 }
 .submit{
-   width:400px;
+   width:100%;
    margin:0 auto;
 }
-.sub_btn{
-}
 .memo{
-   margin-left: 40px;
+   margin-left: 10%;
+}
+.memo_text{
+   resize: none;
+   width: 100%;
+}
+.memo_range{
+   width:50%;
 }
 .memo_con{
    resize: none;
