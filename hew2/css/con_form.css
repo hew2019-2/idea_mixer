@@ -14,13 +14,19 @@
 }
 .top{
    font-size: 30px;
-   width:80px;
 }
 h2{
    font-size: 25px;
 }
 h3{
    font-size: 15px;
+}
+label{
+   display:block;
+}
+.attention{
+   float: right;
+   overflow: auto;
 }
 .category,.box1{
    float: left;
@@ -79,14 +85,32 @@ h3{
 }
 .radio_sel{
    margin: 5px;
+   margin-left: 40px;
 }
 #show{
    display: none;
+   margin-left: 40px;
 }
 .submit{
    width:400px;
    margin:0 auto;
 }
 .sub_btn{
-   margin-left: 165px;
+}
+.memo{
+   margin-left: 40px;
+}
+.memo_con{
+   resize: none;
+}
+.delete{
+   font-size: 14px;
+   color:red;
+   margin-left:30%;
+   margin-right: 10%;
+}
+.delete:hover{
+   transition: 0.7s;
+   color: black;
+   text-decoration:
 }
