@@ -109,7 +109,7 @@ if (!empty($_GET['back'])) {
    header('Location:contribution_form.php');
 }
 if (isset($_POST['next'])) {
-  $contribute = $dbh->prepare("INSERT INTO ideas(user_id, keyword_id_1, keyword_id_2, category_id, point, group_id, reason_id, reason_otherwise, memo, range_sharewith_idea_switch, range_sharewith_memo_switch, status, created_at, updated_at) VALUES ('".$user_id."','".$text1."','".$text2."','".$category."','".$point."','".$group_id."','".$radio."','".$other."','".$memo."','".$range."','".$memo_range."','".$status."',now(),now())");
+  $contribute = $dbh->prepare("INSERT INTO ideas(user_id, keyword_id_1, keyword_id_2, category_id, idea_point, group_id, reason_id, reason_otherwise, memo, range_sharewith_idea_switch, range_sharewith_memo_switch, status, created_at, updated_at) VALUES ('".$user_id."','".$text1."','".$text2."','".$category."','".$point."','".$group_id."','".$radio."','".$other."','".$memo."','".$range."','".$memo_range."',1,now(),now())");
   $contribute->execute();
   header('Location:../index.php');
 }

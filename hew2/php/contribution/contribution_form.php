@@ -11,6 +11,8 @@ $radio_error = '' ;
 $category_err = '';
 $m_c_error = '';
 $rows['keyword'] = '';
+$word1 = '';
+$word2 = '';
 
 $sql = "SELECT name FROM categories";
 $stmt = $dbh->query($sql);
@@ -19,7 +21,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {    // SELECT~LIMITクエリで�
     $category_array[] = $row['name'];   // fetchした結果をレコード単位で配列$dispに保存
 }
 $dbh = null;
-
 
 if (isset($_POST['next'])) {
 //
@@ -36,7 +37,6 @@ if (isset($_POST['next'])) {
   else{
     $_SESSION['category'] = $_POST['category'];
   }
-
   //初期ページの初期化
 
 //ランダムボタンが押された時
@@ -50,7 +50,9 @@ if (isset($_POST['next'])) {
   }
   else{
     $_SESSION['text1'] = $_POST['text1'];
+      $word1 = $_POST['text1'];
     $_SESSION['text2'] = $_POST['text2'];
+      $word2 = $_POST['text2'];
   }
 //
 //理由の部分のエラーチェック&セッションに保存

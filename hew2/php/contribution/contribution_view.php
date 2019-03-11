@@ -21,14 +21,13 @@
 //
 //アイデア取得
 //
-   $ideas = $dbh->query("SELECT user_id , keyword_id_1 , keyword_id_2 , category_id , reason_id , reason_otherwise , memo , range_sharewith_idea_switch , range_sharewith_memo_switch , created_at , updated_at FROM ideas WHERE '".$idea_id."' ");
+   $ideas = $dbh->query("SELECT user_id , keyword1 , keyword2 , category_id , reason , memo , range_sharewith_idea_switch , range_sharewith_memo_switch , created_at , updated_at FROM ideas WHERE id = '".$idea_id."' ");
    while ($row = $ideas->fetch(PDO::FETCH_ASSOC)){
      $user_id = $row['user_id'];
-     $word1 = $row['keyword_id_1'];
-     $word2 = $row['keyword_id_2'];
+     $word1 = $row['keyword1'];
+     $word2 = $row['keyword2'];
      $category_id = $row['category_id'];
-     $reason_id = $row['reason_id'];
-     $reason_otherwise = $row['reason_otherwise'];
+     $reason_id = $row['reason'];
      $memo = $row['memo'];
      $idea_sharerange = $row['range_sharewith_idea_switch'];
      $memo_sharerange = $row['range_sharewith_memo_switch'];
@@ -54,13 +53,18 @@
    //
    //リプライがあった際保存するプログラム
    //
+   $reply_err = '';
    if (!empty($_POST['reply_btn'])) {
+      if ($_POST['reply'] == '') {
+         $reply_err = 'コメント内容が入力されていません';
+      }
+      else{
       // $reply_user = $_SESSION['user_id'];
       $reply_user = 21;
       $reply_comment = $_POST['reply'];
       $reply = $dbh->prepare("INSERT INTO comments(idea_id,user_id,comment) VALUES('".$idea_id."','".$reply_user."','".$reply_comment."')");
       $reply->execute();
-
+      }
       header('Location:contribution_view.php');
       exit;
    }
@@ -80,12 +84,7 @@
 //
 //表示した際のフォローボタンか編集ボタンかを変える処理
 //
-   if ($account_id == $user_id) {
-     $button = "<button type='submit' name='edit' class='account_btn'>編集</button>";
-   }
-   else{
-     $button = "<button type='submit' name='follow' class='account_btn'>フォロー</button>";
-   }
+
 //
 //followがきた時の処理
 //
