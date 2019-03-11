@@ -66,9 +66,9 @@
 		<h2>アイデアとして出す単語を記入</h2>
 		<hr>
 		<div class="input">
-			<input type='text' name='text1' class=text1>
+			<input type='text' name='text1' class=text1 value="<?php echo $word1 ?>">
 			<span class="batu">×</span>
-			<input type='text' name='text2' id='word' class='text2'>
+			<input type='text' name='text2' id='word' class='text2' value="<?php echo $word2 ?>">
 			<button type='button' name='random' id='random_word' onclick='click_event()'> <img src="../../image/random.png" class='random_img'> </button>
 		</div>
 	</div>
@@ -134,4 +134,3 @@
 </script>
 </body>
 </html>
-<?php require_once 'contribution_view.php' ?>
