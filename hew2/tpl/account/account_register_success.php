@@ -1,54 +1,31 @@
-<?php
-require_once '../../config.php';
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>TOP</title>
+		<link href="../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../css/account.css" rel="stylesheet" type="text/css">
+	</head>
+
+<body>
+	<?php require_once "../../tpl/choose_header.php"?>
+
+	<div class="container">
+		<center>
+	<h1>本登録完了</h1>
+	<p>ログインページへGO</p>
+	<a href="../login.php">ログイン</a>
+</center>
+	</div>
 
 
-if(isset($_GET['id'])){
-	try {
-		// DB接続(PDO)
-		$pdo = new PDO ('mysql:dbname='.DB.';host='.DB_HOST.';charset=utf8', DB_USER, DB_PASS);
-		$sql = "SELECT status FROM users WHERE hash_login_id = '".$_GET['id']."'";		//本登録済みかどうかステータスを取得
-		$status = $pdo->query($sql);
-		$pdo = null;
-		$status = $status->fetch(PDO::FETCH_ASSOC);//結果を取得
-		if($status['status'] == 1){		//既に本登録されいる場合完了済みページへ遷移
-			header ('location: ./account_register_already_created.php');
-			$pdo = null;
-			exit;
-		}
-	}
-	catch (PDOException $e) {
-		// エラー出力
-		var_dump($e->getMessage());
-	}
+<?php require_once "../../tpl/footer.php"?>
+<!-- Bootstrap core JavaScript -->
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../js/bootstrap.bundle.min.js"></script>
 
 
-
-
-
-	try {
-		// DB接続(PDO)
-		$pdo = new PDO ('mysql:dbname='.DB.';host='.DB_HOST.';charset=utf8', DB_USER, DB_PASS);
-		$sql = "UPDATE users SET status = 1 WHERE hash_login_id = '".$_GET['id']."'";		//hashIDに対応するuserのstatusを1にする
-		$pdo->query($sql);
-
-  	}
-	catch (PDOException $e) {
-		// エラー出力
-		var_dump($e->getMessage());
-	}
-	// DB切断
-	$pdo = null;
-}
-else{
-	header ('location: ../../index.php');
-	exit;
-}
-
-
-
-
-
-
-
-require_once '../../tpl/account/account_register_success.php';
- ?>
+</body>
+</html>
